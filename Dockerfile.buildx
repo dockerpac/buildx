@@ -1,0 +1,6 @@
+FROM moby/buildkit:buildx-stable-1
+ARG DTR_URL
+RUN apk update && apk add curl ca-certificates && rm -rf /var/cache/apk/*
+RUN curl -k https://${DTR_URL}/ca > /usr/local/share/ca-certificates/amberjack.crt
+RUN update-ca-certificates
+
